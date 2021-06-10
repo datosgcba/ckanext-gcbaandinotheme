@@ -9,7 +9,7 @@ class GobArRouter:
         self.home_controller = 'ckanext.gobar_theme.controller:GobArHomeController'
         self.home_routes = SubMapper(self.route_map, controller=self.home_controller)
         self.api_controller = 'ckanext.gobar_theme.controller:GobArApiController'
-        self.package_controller = 'ckanext.gobar_theme.package_controller:GobArPackageController'
+
 
     def redirect(self, *routes):
         for url_from, url_to in routes:
@@ -51,7 +51,7 @@ class GobArRouter:
         )
 
     def connect_datasets(self):
-        with SubMapper(self.route_map, controller=self.package_controller) as m:
+        with SubMapper(self.route_map, controller='package') as m:
             m.connect('search', '/dataset', action='search', highlight_actions='index search')
             m.connect('add dataset', '/dataset/new', action='new')
             m.connect('edit dataset', '/dataset/edit/{id}', action='edit')

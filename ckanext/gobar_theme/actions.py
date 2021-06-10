@@ -7,6 +7,7 @@ import sys
 from ckan.lib.helpers import literal
 import ckan.lib.helpers as h
 import ckanext.gobar_theme.helpers as h_gobar
+import ckan.model as model
 
 _get_action = logic.get_action
 
@@ -33,7 +34,10 @@ def _resource_purge(context, data_dict):
 
 def _resource_delete_from_datastore(context, data_dict):
     id = logic.get_or_bust(data_dict, 'id')
-    ckanext.datastore.logic.action.datastore_delete(context, {'resource_id': id, 'force': True})
+    resource = model.Resource.get(data_dict['id'])
+    if (resource is not None and
+        resource.extras.get('datastore_active') is True):
+            ckanext.datastore.logic.action.datastore_delete(context, {'resource_id': id, 'force': True})
 
 
 def resource_delete_and_purge(context, data_dict):
