@@ -11,7 +11,7 @@ Repositorio de la extensión del Portal [data.buenosaires.gob.ar](http://data.bu
 
 Correr dentro del entorno virtual de python(venv) para instalaciones hechas con Docker:
 
-    -pip install -e "git+https://github.com/gasti10/ckanext-gobar-theme.git#egg=ckanext-gobar_theme"
+    pip install -e "git+https://github.com/gasti10/ckanext-gobar-theme.git#egg=ckanext-gobar_theme"
 
 ### Estructura de archivos
 
